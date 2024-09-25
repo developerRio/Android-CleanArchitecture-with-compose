@@ -26,6 +26,10 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.0" // Use the latest version
     }
     buildTypes {
         debug {
@@ -68,6 +72,7 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.activity
     implementation libs.androidx.constraintlayout
+    implementation libs.androidx.material3.android
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
@@ -122,6 +127,19 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$httpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$httpVersion"
 
+    // Jetpack Compose
+    def composeVersion = "1.5.0"
+    implementation "androidx.compose.ui:ui:$composeVersion"
+    implementation "androidx.compose.material:material:$composeVersion"
+    implementation "androidx.compose.compiler:compiler:$composeVersion"
+    debugImplementation "androidx.compose.ui:ui-tooling:$composeVersion"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$composeVersion"
+    implementation libs.androidx.activity.compose
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.ui.tooling
+    implementation libs.androidx.ui.tooling.preview
+    implementation libs.androidx.ui
+    implementation libs.androidx.ui.graphics
 }
 // Allow references to generated code
 kapt {
