@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LLABank</string>
+    <string name="local_to">localto</string>
+    <string name="perform_your_search_for_hotels">Perform your search for hotels</string>
+    <string name="for_the_vowel_details">For the vowel details</string>
+    <string name="search">Search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hotel_image">Hotel Image</string>
+</resources>

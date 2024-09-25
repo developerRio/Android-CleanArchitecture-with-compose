@@ -1,0 +1,129 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    namespace 'com.originalstocks.llabank'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.originalstocks.llabank"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    flavorDimensions = ["staging"]
+    viewBinding {
+        enabled = true
+    }
+    buildFeatures {
+        buildConfig = true
+        viewBinding true
+    }
+    buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        staging {
+            buildConfigField("String", "BASE_URL", "\"https://66f1bee6415379191551fbdc.mockapi.io/\"")
+            versionNameSuffix "-staging " + new Date().format('yyyy-MM-dd HH:mm:ss.SSS')
+        }
+        production {
+            buildConfigField("String", "BASE_URL", "\"https://66f1bee6415379191551fbdc.mockapi.io/\"")
+            versionNameSuffix "-prod " + new Date().format('yyyy-MM-dd HH:mm:ss.SSS')
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFileName = output.outputFileName.replace(".apk", "-" + defaultConfig.versionName + ".apk")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+
+    // Navigation Arch.
+    def navVersion = "2.8.1"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    //Glide
+    def glideVersion = "4.14.2"
+    implementation "com.github.bumptech.glide:compose:1.0.0-beta01"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    // Coroutines & call adapter
+    def coVersion = "1.7.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coVersion"
+    def version_retrofit_coroutines_adapter = "0.9.2"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+    //Gson
+    def gsonVersion = "2.10.1"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+
+    //LifeCycle
+    def lifeCycleVersion = "2.8.6"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion"
+
+    //Hilt (D.I)
+    def hiltVersion= "2.48"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    implementation "androidx.hilt:hilt-navigation-compose:1.2.0"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0"
+
+    //Caching & Room arch.
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Retrofit
+    def retrofitVersion = "2.9.0"
+    def httpVersion = "5.0.0-alpha.3"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$httpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$httpVersion"
+
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}

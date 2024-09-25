@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="off_white">#F2F2F2</color>
+    <color name="gen_bg">#C3FFC5</color>
+    <color name="logo_bg">#447A5C</color>
+    <color name="colorAccent">#4924EF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <!--backgrounds-->
+    <color name="bg_black">#FF000000</color>
+    <color name="bg_red">#E91E63</color>
+    <color name="bg_grey">#6D6D6D</color>
+    <color name="bg_light_grey">#BABABA</color>
+    <color name="bg_extra_light_grey">#F1F1F1</color>
+    <color name="bg_transparent">#00000000</color>
+    <color name="bg_white">#FFFFFFFF</color>
+    <color name="ripple_white">#7CFFFFFF</color>
+    <!--text colors-->
+    <color name="text_black">#333333</color>
+    <color name="text_hint_grey">#A5A5A5</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_green">#8BC34A</color>
+    <!-- basic colors -->
+    <color name="border_light_grey">#DADADA</color>
+</resources>
